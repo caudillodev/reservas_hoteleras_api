@@ -10,16 +10,17 @@ const reservas = require("../models/reservaModels");
  * Respuesta: Un objeto JSON que contiene un mensaje y los detalles de la reserva recién creada.
  */
 const crearReserva = (req, res) => {
-    const { fecha, nombreHuesped, tipoHabitacion, cantidadAdultos, cantidadMenores, estadoPago, hotel } = req.body;
+    const { numeroReserva,fecha, nombreHuesped, tipoHabitacion, cantidadAdultos, cantidadMenores, estadoPago, hotel } = req.body;
   
     // Validar que los campos requeridos estén presentes
-    if (!fecha || !nombreHuesped || !tipoHabitacion || !cantidadAdultos || !hotel || !hotel.id || !hotel.nombre) {
-      return res.status(400).json({ error: "Todos los campos son requeridos: fecha, nombreHuesped, tipoHabitacion, cantidadAdultos, hotel (id y nombre)" });
+    if (!numeroReserva || !fecha || !nombreHuesped || !tipoHabitacion || !cantidadAdultos || !hotel || !hotel.id || !hotel.nombre) {
+      return res.status(400).json({ error: "Todos los campos son requeridos: numeroReserva, fecha, nombreHuesped, tipoHabitacion, cantidadAdultos, hotel (id y nombre)" });
     }
   
     // Crear la nueva reserva
     const nuevaReserva = {
-      numeroReserva: reservas.length + 1, // Generar número de reserva automáticamente
+      id: reservas.length + 1, // Generar número de reserva automáticamente
+      numeroReserva,
       fecha,
       nombreHuesped,
       tipoHabitacion,

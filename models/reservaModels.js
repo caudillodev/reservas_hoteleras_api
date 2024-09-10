@@ -2,7 +2,8 @@
 const reservas = [
     {
         "reserva": {
-            "numeroReserva": "123456",
+            "id":"0",
+            "numeroReserva": "12345",
             "fecha": "2024-09-10",
             "nombreHuesped": "Rodrigo Espinoza",
             "tipoHabitacion": "doble",
@@ -17,7 +18,8 @@ const reservas = [
     },
     {
         "reserva": {
-            "numeroReserva": "334243",
+            "id":"1",
+            "numeroReserva": "33424",
             "fecha": "2024-09-11",
             "nombreHuesped": "Paz Espinoza",
             "tipoHabitacion": "doble",
