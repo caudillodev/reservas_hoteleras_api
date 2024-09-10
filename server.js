@@ -10,6 +10,8 @@ const path = require("path");
 // Creamos una instancia de la aplicación
 const app = express();
 
+// Definimos el hostname en que publicará el servicio
+const HOSTNAME = process.env.HOSTNAME || 'localhost';
 // Definimos el puerto en el que correrá el servidor
 const PORT = process.env.PORT || 3000;
 
@@ -28,6 +30,6 @@ const reservaRoutes = require("./routes/reservaRoutes");
 app.use("/api/reservas", reservaRoutes);
 
 // Iniciamos el servidor
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
+app.listen(PORT,HOSTNAME, () => {
+  console.log(`Servidor corriendo en el hostname ${HOSTNAME} y el puerto ${PORT}`);
 });

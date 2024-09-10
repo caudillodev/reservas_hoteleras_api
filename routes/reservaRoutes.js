@@ -6,6 +6,7 @@ const reservaController = require("../controllers/reservaController");
 // Rutas de reservas
 router.get("/", reservaController.obtenerReservas);
 router.post("/",reservaController.crearReserva);
+router.get("/:id", reservaController.obtenerReservaPorId);
 
 // Exporta el router para ser utilizado en la aplicación principal
 module.exports = router;
