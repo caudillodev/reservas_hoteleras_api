@@ -46,7 +46,7 @@ const crearReserva = (req, res) => {
  * Respuesta: Un objeto JSON que contiene un mensaje y la lista de reservas.
  */
 const obtenerReservas = (req, res) => {
-  const { nombreHotel, fecha_inicio, fecha_fin } = req.query;  // Obtenemos los query params
+  const { nombreHotel, fecha_inicio, fecha_fin, tipo_habitacion } = req.query;  // Obtenemos los query params
 
   let reservasFiltradas = reservas;
 
@@ -73,6 +73,17 @@ const obtenerReservas = (req, res) => {
 
     if (reservasFiltradas.length === 0) {
       return res.status(404).json({ mensaje: `No se encontraron reservas en el rango de fechas proporcionado.` });
+    }
+  }
+
+  // Filtrar por tipo de habitación si se proporciona
+  if (tipo_habitacion) {
+    reservasFiltradas = reservasFiltradas.filter((reserva) =>
+      reserva.tipoHabitacion.toLowerCase() === tipo_habitacion.toLowerCase()
+    );
+
+    if (reservasFiltradas.length === 0) {
+      return res.status(404).json({ mensaje: `No se encontraron reservas con tipo de habitación ${tipo_habitacion}.` });
     }
   }
 
