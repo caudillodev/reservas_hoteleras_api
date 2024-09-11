@@ -43,10 +43,14 @@ const crearReserva = (req, res) => {
  * Ruta: GET /api/reservas
  * Descripción: Devuelve la lista de reservas en su totalidad o por filtros:
  *  - nombreHotel : Nombre del Hotel en el cual está hecha la reserva.
+ *  - fecha_inicio, fecha_fin: Por rango de fechas.
+ *  - tipo_habitacion: Por tipo de habitación.
+ *  - estado: Por estado del pago de la reserva.
+ *  - num_huespedes: Por la cantidad de huéspedes (considerado adultos y menores)
  * Respuesta: Un objeto JSON que contiene un mensaje y la lista de reservas.
  */
 const obtenerReservas = (req, res) => {
-  const { nombreHotel, fecha_inicio, fecha_fin, tipo_habitacion, estado } = req.query;  // Obtenemos los query params
+  const { nombreHotel, fecha_inicio, fecha_fin, tipo_habitacion, estado, num_huespedes } = req.query;  // Obtenemos los query params
 
   let reservasFiltradas = reservas;
 
@@ -95,6 +99,18 @@ const obtenerReservas = (req, res) => {
 
     if (reservasFiltradas.length === 0) {
       return res.status(404).json({ mensaje: `No se encontraron reservas con estado de pago ${estado}.` });
+    }
+  }
+
+  // Filtrar por número de huéspedes (suma de adultos y menores)
+  if (num_huespedes) {
+    reservasFiltradas = reservasFiltradas.filter((reserva) => {
+      const totalHuespedes = reserva.cantidadAdultos + reserva.cantidadMenores;
+      return totalHuespedes === parseInt(num_huespedes);
+    });
+
+    if (reservasFiltradas.length === 0) {
+      return res.status(404).json({ mensaje: `No se encontraron reservas con ${num_huespedes} huéspedes.` });
     }
   }
 
