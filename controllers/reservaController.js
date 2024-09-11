@@ -104,10 +104,33 @@ const actualizarReserva = (req, res) => {
   res.json({ mensaje: `Reserva con ID: ${id} actualizada exitosamente`, reserva });
 };
 
+/**
+ * Ruta: DELETE /api/reversa/:id
+ * Descripción: Elimina una reserva de la lista según su ID.
+ * Parámetros:
+ *  - id (requerido): El ID de la reserva que se desea eliminar.
+ * Respuesta:
+ *  - Si la reserva es encontrada y eliminada: Un objeto JSON con el mensaje de éxito.
+ *  - Si no se encuentra la reserva: Un mensaje de error con el código 404.
+ */
+const eliminarReserva = (req, res) => {
+  const { id } = req.params;
+  const indice = reservas.findIndex((c) => c.id === parseInt(id));
+
+  if (indice === -1) {
+    return res.status(404).json({ error: "Reserva no encontrada" });
+  }
+
+  reservas.splice(indice, 1);
+
+  res.json({ mensaje: `Reserva con ID: ${id} eliminada exitosamente` });
+};
+
 // Exporta los controladores para ser utilizados en las rutas
 module.exports = {
     crearReserva,
     obtenerReservas,
     obtenerReservaPorId,
     actualizarReserva,
+    eliminarReserva,
 };

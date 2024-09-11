@@ -5,11 +5,11 @@ const reservas = [
         "fecha": "2024-09-11",
         "nombreHuesped": "Rodrigo Espinoza",
         "tipoHabitacion": "suite",
-        "santidadAdultos": "2",
-        "cantidadMenores": "2",
+        "cantidadAdultos": 2,
+        "cantidadMenores": 2,
         "estadoPago": "pagado",
             "hotel": {
-                "id": "1",
+                "id": 1,
                 "nombre": "Hotel Paraíso"
             }
     },
@@ -18,11 +18,11 @@ const reservas = [
         "fecha": "2024-09-11",
         "nombreHuesped": "Paz Espinoza",
         "tipoHabitacion": "doble",
-        "santidadAdultos": "1",
-        "cantidadMenores": "0",
+        "cantidadAdultos": 1,
+        "cantidadMenores": 0,
         "estadoPago": "pendiente",
             "hotel": {
-                "id": "1",
+                "id": 1,
                 "nombre": "Hotel Paraíso"
             }
     }
