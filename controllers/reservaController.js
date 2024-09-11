@@ -68,9 +68,46 @@ const obtenerReservaPorId = (req, res) => {
   res.json({ mensaje: `Información de la reserva con ID: ${idReserva}`, reserva });
 };
 
+/**
+ * Ruta: PUT /api/reservas/:id
+ * Descripción: Actualiza los datos de una reserva
+ * Parámetros:
+ *  - id (requerido): El ID de la reserva que se desea actualizar.
+ * Cuerpo de la solicitud:
+ *  - fecha: Fecha de la reserva.
+ *  - nombreHuesped: Nombre de quien hizo la reserva.
+ *  - tipoHabitacion: Indica el tipo de habitación reservada (habitación doble, suite familiar)
+ *  - cantidadAdultos: Cantidad de adultos que ocuparán la habitación.
+ *  - cantidadMenores: Cantidad de menores de edad que ocuparán la habitación.
+ *  - estadoPago: Estado de pago de la reserva.
+ * Respuesta:
+ *  - Si la reserva es encontrada y actualizado: Un objeto JSON con el mensaje y los datos actualizados.
+ *  - Si no se encuentra la reserva: Un mensaje de error con el código 404.
+ */
+const actualizarReserva = (req, res) => {
+  const { id } = req.params;
+  const { fecha, nombreHuesped,tipoHabitacion,cantidadAdultos,cantidadMenores,estadoPago  } = req.body;
+
+  const reserva = reservas.find((c) => c.id === parseInt(id));
+
+  if (!reserva) {
+    return res.status(404).json({ error: "Reserva no encontrada" });
+  }
+
+  reserva.fecha = fecha || reserva.fecha;
+  reserva.nombreHuesped = nombreHuesped || reserva.nombreHuesped;
+  reserva.tipoHabitacion = tipoHabitacion || reserva.tipoHabitacion;
+  reserva.cantidadAdultos = cantidadAdultos || reserva.cantidadAdultos;
+  reserva.cantidadMenores = cantidadMenores || reserva.cantidadMenores;
+  reserva.estadoPago = estadoPago || reserva.estadoPago;
+
+  res.json({ mensaje: `Reserva con ID: ${id} actualizada exitosamente`, reserva });
+};
+
 // Exporta los controladores para ser utilizados en las rutas
 module.exports = {
     crearReserva,
     obtenerReservas,
     obtenerReservaPorId,
+    actualizarReserva,
 };
