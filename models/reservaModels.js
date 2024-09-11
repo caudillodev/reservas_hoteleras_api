@@ -1,7 +1,7 @@
 // Simulamos una base de datos con listas de reservas
 const reservas = [
     {
-        "id":0,
+        "id":1,
         "fecha": "2024-09-11",
         "nombreHuesped": "Rodrigo Espinoza",
         "tipoHabitacion": "suite",
@@ -14,7 +14,7 @@ const reservas = [
             }
     },
     {
-        "id":1,
+        "id":2,
         "fecha": "2024-09-11",
         "nombreHuesped": "Paz Espinoza",
         "tipoHabitacion": "doble",

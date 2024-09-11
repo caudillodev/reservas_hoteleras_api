@@ -41,10 +41,32 @@ const crearReserva = (req, res) => {
 
 /**
  * Ruta: GET /api/reservas
- * Descripción: Devuelve la lista completa de reservas.
+ * Descripción: Devuelve la lista de reservas en su totalidad o por filtros:
+ *  - nombreHotel : Nombre del Hotel en el cual está hecha la reserva.
  * Respuesta: Un objeto JSON que contiene un mensaje y la lista de reservas.
  */
 const obtenerReservas = (req, res) => {
+
+  const nombreHotel = req.query.nombreHotel;  // Obtenemos el query param
+
+  // Si se proporciona el nombre del hotel, filtramos las reservas
+  if (nombreHotel) {
+    const reservasFiltradas = reservas.filter((reserva) =>
+      reserva.hotel.nombre.toLowerCase() === nombreHotel.toLowerCase()
+    );
+
+    if (reservasFiltradas.length === 0) {
+      return res.status(404).json({ mensaje: `No se encontraron reservas para el hotel ${nombreHotel}.` });
+    }
+
+    // Retorna las reservas filtradas
+    return res.json({
+      mensaje: `Reservas encontradas para el hotel ${nombreHotel}:`,
+      reservas: reservasFiltradas
+    });
+  }
+
+  // Si no hay parámetro `nombreHotel`, retorna todas las reservas
   res.json({ mensaje: "Lista de reservas", reservas });
 };
 
