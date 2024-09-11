@@ -46,28 +46,41 @@ const crearReserva = (req, res) => {
  * Respuesta: Un objeto JSON que contiene un mensaje y la lista de reservas.
  */
 const obtenerReservas = (req, res) => {
+  const { nombreHotel, fecha_inicio, fecha_fin } = req.query;  // Obtenemos los query params
 
-  const nombreHotel = req.query.nombreHotel;  // Obtenemos el query param
+  let reservasFiltradas = reservas;
 
-  // Si se proporciona el nombre del hotel, filtramos las reservas
+  // Filtrar por nombre del hotel si se proporciona
   if (nombreHotel) {
-    const reservasFiltradas = reservas.filter((reserva) =>
+    reservasFiltradas = reservasFiltradas.filter((reserva) =>
       reserva.hotel.nombre.toLowerCase() === nombreHotel.toLowerCase()
     );
 
     if (reservasFiltradas.length === 0) {
       return res.status(404).json({ mensaje: `No se encontraron reservas para el hotel ${nombreHotel}.` });
     }
-
-    // Retorna las reservas filtradas
-    return res.json({
-      mensaje: `Reservas encontradas para el hotel ${nombreHotel}:`,
-      reservas: reservasFiltradas
-    });
   }
 
-  // Si no hay parámetro `nombreHotel`, retorna todas las reservas
-  res.json({ mensaje: "Lista de reservas", reservas });
+  // Filtrar por rango de fechas si se proporciona
+  if (fecha_inicio && fecha_fin) {
+    const fechaInicio = new Date(fecha_inicio);
+    const fechaFin = new Date(fecha_fin);
+
+    reservasFiltradas = reservasFiltradas.filter((reserva) => {
+      const fechaReserva = new Date(reserva.fecha);
+      return fechaReserva >= fechaInicio && fechaReserva <= fechaFin;
+    });
+
+    if (reservasFiltradas.length === 0) {
+      return res.status(404).json({ mensaje: `No se encontraron reservas en el rango de fechas proporcionado.` });
+    }
+  }
+
+  // Retornar las reservas filtradas o todas si no hay filtros aplicados
+  res.json({
+    mensaje: reservasFiltradas.length ? "Reservas encontradas:" : "No se encontraron reservas.",
+    reservas: reservasFiltradas
+  });
 };
 
 /**
