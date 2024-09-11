@@ -4,6 +4,12 @@ require("dotenv").config();
 // Importamos el módulo de Express
 const express = require("express");
 
+// Importar el módulo de Swagger UI Express
+const swaggerUi = require("swagger-ui-express");
+
+// Importar el módulo de Swagger Jsdoc
+const swaggerJsdoc = require("swagger-jsdoc");
+
 // Módulo para manejar rutas de archivos
 const path = require("path");
 
@@ -14,6 +20,33 @@ const app = express();
 const HOSTNAME = process.env.HOSTNAME || 'localhost';
 // Definimos el puerto en el que correrá el servidor
 const PORT = process.env.PORT || 3000;
+
+// Middleware para parsear el cuerpo de las solicitudes con formato JSON
+app.use(express.json());
+
+// Configuración de Swagger, para documentar la API
+const swaggerOptions = {
+  swaggerDefinition: {
+    openapi: "3.0.0",
+    info: {
+      title: "API de Reservas",
+      version: "1.0.0",
+      description:
+        "Documentación de la API de Reservas Hoteleras - BOOTCAMP - Rodrigo Espinoza",
+    },
+    servers: [
+      {
+        url: `http://${HOSTNAME}:${PORT}`,
+      },
+    ],
+  },
+  // Documentar automáticamente las rutas en la carpeta routes
+  apis: ["./routes/*.js"],
+};
+
+// Middleware para servir la documentación de Swagger en la ruta /api-docs
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Middleware para parsear el cuerpo de las solicitudes con formato JSON
 app.use(express.json());
