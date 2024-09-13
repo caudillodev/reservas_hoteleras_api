@@ -1,0 +1,572 @@
+{
+	"info": {
+		"_postman_id": "6e13c347-8677-4da3-8fb6-e42a57856dd8",
+		"name": "RESERVA_HOTELERA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6549183"
+	},
+	"item": [
+		{
+			"name": "oncloud",
+			"item": [
+				{
+					"name": "oncloud_reserva_get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://45.236.129.243:3000/api/reservas",
+							"protocol": "http",
+							"host": [
+								"45",
+								"236",
+								"129",
+								"243"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "oncloud_reserva_post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fecha\": \"2024-12-27\",\n  \"nombreHuesped\": \"Rorro\",\n  \"tipoHabitacion\": \"suite\",\n  \"cantidadAdultos\": \"2\",\n  \"cantidadMenores\": \"0\",\n  \"estadoPago\": \"pendiente\",\n  \"hotel\": {\n    \"id\": \"1\",\n    \"nombre\": \"Hotel California\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://45.236.129.243:3000/api/reservas",
+							"protocol": "http",
+							"host": [
+								"45",
+								"236",
+								"129",
+								"243"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "oncloud_reservas_get_por_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://45.236.129.243:3000/api/reservas/1",
+							"protocol": "http",
+							"host": [
+								"45",
+								"236",
+								"129",
+								"243"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "oncloud_reserva_actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tipoHabitacion\": \"presidencial\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://45.236.129.243:3000/api/reservas/1",
+							"protocol": "http",
+							"host": [
+								"45",
+								"236",
+								"129",
+								"243"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "oncloud_reserva_eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://45.236.129.243:3000/api/reservas/1",
+							"protocol": "http",
+							"host": [
+								"45",
+								"236",
+								"129",
+								"243"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "oncloud_reserva_buscar_por_hotel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://45.236.129.243:3000/api/reservas?nombreHotel=Hotel Paraíso",
+							"protocol": "http",
+							"host": [
+								"45",
+								"236",
+								"129",
+								"243"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas"
+							],
+							"query": [
+								{
+									"key": "nombreHotel",
+									"value": "Hotel Paraíso"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "oncloud_reserva_buscar_por_fechas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://45.236.129.243:3000/api/reservas?fecha_inicio=2024-12-27&fecha_fin=2024-12-27",
+							"protocol": "http",
+							"host": [
+								"45",
+								"236",
+								"129",
+								"243"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas"
+							],
+							"query": [
+								{
+									"key": "fecha_inicio",
+									"value": "2024-12-27"
+								},
+								{
+									"key": "fecha_fin",
+									"value": "2024-12-27"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "oncloud_reserva_por_tipo_habitacion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://45.236.129.243:3000/api/reservas?tipo_habitacion=doble",
+							"protocol": "http",
+							"host": [
+								"45",
+								"236",
+								"129",
+								"243"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas"
+							],
+							"query": [
+								{
+									"key": "tipo_habitacion",
+									"value": "doble"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "oncloud_reserva_por_estado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://45.236.129.243:3000/api/reservas?estado=pendiente",
+							"protocol": "http",
+							"host": [
+								"45",
+								"236",
+								"129",
+								"243"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas"
+							],
+							"query": [
+								{
+									"key": "estado",
+									"value": "pendiente"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "oncloud_reserva_por_cantidad_huespedes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://45.236.129.243:3000/api/reservas?num_huespedes=1",
+							"protocol": "http",
+							"host": [
+								"45",
+								"236",
+								"129",
+								"243"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas"
+							],
+							"query": [
+								{
+									"key": "num_huespedes",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "localhost",
+			"item": [
+				{
+					"name": "reserva_get",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/reservas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reserva_post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fecha\": \"2024-12-27\",\n  \"nombreHuesped\": \"Rorro\",\n  \"tipoHabitacion\": \"suite\",\n  \"cantidadAdultos\": \"2\",\n  \"cantidadMenores\": \"0\",\n  \"estadoPago\": \"pendiente\",\n  \"hotel\": {\n    \"id\": \"1\",\n    \"nombre\": \"Hotel California\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/reservas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reservas_get_por_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/reservas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reserva_actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tipoHabitacion\": \"presidencial\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/reservas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reserva_eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/reservas/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reserva_buscar_por_hotel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/reservas?nombreHotel=Hotel Paraíso",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas"
+							],
+							"query": [
+								{
+									"key": "nombreHotel",
+									"value": "Hotel Paraíso"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reserva_buscar_por_fechas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/reservas?fecha_inicio=2024-12-27&fecha_fin=2024-12-27",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas"
+							],
+							"query": [
+								{
+									"key": "fecha_inicio",
+									"value": "2024-12-27"
+								},
+								{
+									"key": "fecha_fin",
+									"value": "2024-12-27"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reserva_por_tipo_habitacion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/reservas?tipo_habitacion=doble",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas"
+							],
+							"query": [
+								{
+									"key": "tipo_habitacion",
+									"value": "doble"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reserva_por_estado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/reservas?estado=pagado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas"
+							],
+							"query": [
+								{
+									"key": "estado",
+									"value": "pagado"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reserva_por_cantidad_huespedes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/reservas?num_huespedes=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"reservas"
+							],
+							"query": [
+								{
+									"key": "num_huespedes",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
